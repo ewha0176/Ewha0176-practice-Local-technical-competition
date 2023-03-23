@@ -1,0 +1,155 @@
+package windows;
+
+import java.awt.GridBagConstraints;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+
+
+//public class BookImageWriter extends JPanel {
+//	public BookImageWriter() {
+//		File directory = new File("./book/");	// file 디렉토리 설정
+//		File[] files = directory.listFiles();	// files 배열에 디렉토리 내 목록 저장
+//		
+//	}
+//}
+
+public class MainFrame extends JFrame implements ActionListener{
+	
+	
+	
+	private JPanel main_panel;
+	private JLabel title_label;
+	private JPanel search_panel;
+	private JLabel search_label;
+	private JComboBox search_cobx;
+	private JButton search_button;
+	private JTextField search_textfield;
+	private JLabel test_label;
+	private JButton icon1_button;
+	private JButton icon2_button;
+	
+	private void setInit() {
+		super.setTitle("도서목록");
+		super.setSize(850,500);
+		super.setLocationRelativeTo(null);
+		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	}
+	
+	private void setComp() {
+		
+		Font title_font = new Font("맑은 고딕", Font.BOLD, 30);
+		
+		main_panel = new JPanel(new GridBagLayout());
+		
+		GridBagConstraints gbc_l1 = new GridBagConstraints();	// layer 1
+		gbc_l1.gridx = 0;
+		gbc_l1.gridy = 0;	// title panel
+		gbc_l1.gridheight = 1;
+		
+		title_label = new JLabel("도서 목록", title_label.CENTER);
+		title_label.setFont(title_font);
+		main_panel.add(title_label, gbc_l1);
+		
+		GridBagConstraints gbc_l2 = new GridBagConstraints();	// layer 2
+		gbc_l2.gridx = 0;	// search panel
+		gbc_l2.gridy = 1;	
+		gbc_l2.gridheight = 1;
+		
+		
+		String cobx_list[] = {"도서명", "저자"};
+		search_panel = new JPanel(new GridBagLayout());
+		search_label = new JLabel("검색");
+		search_cobx = new JComboBox<String>(cobx_list);
+		search_textfield = new JTextField(10);
+		search_button = new JButton("검색");
+		
+		search_panel.add(search_label);
+		search_panel.add(search_cobx);
+		search_panel.add(search_textfield);
+		search_panel.add(search_button);
+		
+		main_panel.add(search_panel, gbc_l2);
+		
+		GridBagConstraints gbc_l3 = new GridBagConstraints();	// layer
+		gbc_l3.gridx = 0;	// search panel
+		gbc_l3.gridy = 2;	
+		gbc_l3.gridheight = 1;
+		
+		String list_string[] = {"분류","전체","총류","철학","종교","사회과학","자연과학","기술과학","예술","언어","문학","역사"};
+		JList lst1 = new JList(list_string);
+		
+		JPanel scroll_panel = new JPanel(new GridLayout());	// scroll_panel
+		JScrollPane scrollpane = new JScrollPane();
+		
+		ButtonGenerator panel = new ButtonGenerator();	// ButtonGenerator
+		
+		JScrollPane scrollbar = new JScrollPane(panel.getImg());	// Buttons panel
+		scrollbar.setPreferredSize(new Dimension(600, 300));
+		scrollbar.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // 스크롤바 항상 표시
+		
+		scroll_panel.add(scrollbar);
+		
+//		main_panel.add(lst1, gbc_l3);
+		main_panel.add(scroll_panel, gbc_l3);
+		
+		
+	}
+	
+	public void actionPerformed(ActionEvent evt) {
+        Object source = evt.getSource();
+        if (source == icon1_button) {
+            System.out.println("Bookinfo");
+        } else if (source == icon2_button) {
+        	
+            System.out.println("Button 2 Clicked");
+        }
+    }
+	
+	private void setDesign() {
+		
+		super.add(main_panel);
+		
+	}
+	public MainFrame() {
+		setComp();
+		setInit();
+		setDesign();
+		setEvents();
+		
+		super.setVisible(true);
+	}
+	private void setEvents() {
+		
+//		button1.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                new BookInfo();
+//                setVisible(false); // 창 안보이게 하기 
+//            }
+//        });
+		
+	}
+
+}

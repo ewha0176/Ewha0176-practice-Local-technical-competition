@@ -1,0 +1,12 @@
+package app;
+
+import jdbc.DBCreateManager;
+import windows.Login;
+import windows.MainFrame;
+import windows.Register;
+
+public class MainClass {
+	public static void main(String[] args) {
+		new Login();
+	}
+}
